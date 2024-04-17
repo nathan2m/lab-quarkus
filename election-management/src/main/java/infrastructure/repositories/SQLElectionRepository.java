@@ -3,7 +3,7 @@ package infrastructure.repositories;
 import domain.Candidate;
 import domain.Election;
 import domain.ElectionRepository;
-import domain.annotations.SQL;
+import domain.annotations.Principal;
 import infrastructure.repositories.entities.ElectionCandidate;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -16,7 +16,7 @@ import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.groupingBy;
 
-@SQL
+@Principal
 @ApplicationScoped
 public class SQLElectionRepository implements ElectionRepository {
     private final EntityManager entityManager;
@@ -26,9 +26,10 @@ public class SQLElectionRepository implements ElectionRepository {
     }
 
     @Override
-    @Transactional
     public void submit(Election election) {
-        entityManager.merge(infrastructure.repositories.entities.Election.fromDomain(election));
+        infrastructure.repositories.entities.Election entity = infrastructure.repositories.entities.Election.fromDomain(election);
+
+        entityManager.merge(entity);
 
         election.votes()
                 .entrySet()
@@ -49,13 +50,13 @@ public class SQLElectionRepository implements ElectionRepository {
                   .map(entry -> {
                       Map.Entry<Candidate, Integer>[] candidates = entry.getValue()
                                                                         .stream()
-                                                                        .map(row -> Map.entry(new Candidate((String) row[1],
-                                                                                                            Optional.ofNullable((String) row[2]),
-                                                                                                            (String) row[3],
-                                                                                                            (String) row[4],
-                                                                                                            (String) row[5],
-                                                                                                            Optional.ofNullable((String) row[6]),
-                                                                                                            Optional.ofNullable((String) row[7])),
+                                                                        .map(row -> Map.entry(new Candidate((String)row[1],
+                                                                                                            Optional.ofNullable((String)row[2]),
+                                                                                                            (String)row[3],
+                                                                                                            (String)row[4],
+                                                                                                            (String)row[5],
+                                                                                                            Optional.ofNullable((String)row[6]),
+                                                                                                            Optional.ofNullable((String)row[7])),
                                                                                               (Integer) row[8]))
                                                                         .toArray(Map.Entry[]::new);
 

@@ -24,7 +24,7 @@ public class VotingResource {
     }
 
     @GET
-    public List<Election> candidates() {
+    public List<Election> elections() {
         return api.findAll();
     }
 

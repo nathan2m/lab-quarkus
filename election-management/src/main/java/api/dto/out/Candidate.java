@@ -20,3 +20,4 @@ public record Candidate(String id,
                              candidate.jobTitle());
     }
 }
+

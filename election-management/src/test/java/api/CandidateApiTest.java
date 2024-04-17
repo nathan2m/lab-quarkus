@@ -36,7 +36,7 @@ class CandidateApiTest {
         verify(candidateService).save(captor.capture());
         verifyNoMoreInteractions(candidateService);
 
-        var candidate = captor.getValue();
+        Candidate candidate = captor.getValue();
 
         assertEquals(candidate.photo(), dto.photo());
         assertEquals(candidate.givenName(), dto.givenName());
@@ -45,7 +45,6 @@ class CandidateApiTest {
         assertEquals(candidate.phone(), dto.phone());
         assertEquals(candidate.jobTitle(), dto.jobTitle());
     }
-
 
     @Test
     void update() {
@@ -65,6 +64,7 @@ class CandidateApiTest {
 
         assertEquals(api.dto.out.Candidate.fromDomain(candidate), response);
     }
+
 
     @Test
     void list() {

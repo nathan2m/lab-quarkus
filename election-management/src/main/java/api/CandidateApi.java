@@ -18,7 +18,6 @@ public class CandidateApi {
         service.save(dto.toDomain());
     }
 
-
     public api.dto.out.Candidate update(String id, api.dto.in.UpdateCandidate dto) {
         service.save(dto.toDomain(id));
         return api.dto.out.Candidate.fromDomain(service.findById(id));

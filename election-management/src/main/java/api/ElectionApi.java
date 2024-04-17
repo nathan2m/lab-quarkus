@@ -10,6 +10,7 @@ import java.util.List;
 public class ElectionApi {
     private final ElectionService service;
 
+
     public ElectionApi(ElectionService service) {
         this.service = service;
     }
@@ -18,7 +19,10 @@ public class ElectionApi {
         service.submit();
     }
 
-    public List<Election> list() {
-        return service.findAll().stream().map(Election::fromDomain).toList();
+    public List<Election> findAll() {
+        return service.findAll()
+                      .stream()
+                      .map(Election::fromDomain)
+                      .toList();
     }
 }

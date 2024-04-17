@@ -1,6 +1,5 @@
 package infrastructure.repositories.entities;
 
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -77,7 +76,7 @@ public class Candidate {
     }
 
     public static Candidate fromDomain(domain.Candidate domain) {
-        var entity = new Candidate();
+        Candidate entity = new Candidate();
 
         entity.setId(domain.id());
         entity.setPhoto(domain.photo().orElse(null));

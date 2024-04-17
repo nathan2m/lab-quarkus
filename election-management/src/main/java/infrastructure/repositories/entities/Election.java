@@ -17,7 +17,7 @@ public class Election {
     }
 
     public static Election fromDomain(domain.Election domain) {
-        var entity = new Election();
+        Election entity = new Election();
 
         entity.setId(domain.id());
 

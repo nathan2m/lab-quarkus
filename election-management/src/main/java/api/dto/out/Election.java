@@ -16,6 +16,7 @@ public record Election(String id, List<Candidate> candidates) {
                             Integer votes) {
     }
 
+
     public static Election fromDomain(domain.Election election) {
         var candidates = election.votes()
                                  .entrySet()

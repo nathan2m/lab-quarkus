@@ -15,7 +15,8 @@ public class ElectionApi {
     }
 
     public List<Election> findAll() {
-        return service.findAll().stream().map(Election::fromDomain).toList();
+        List<domain.Election> elections = service.findAll();
+        return elections.stream().map(Election::fromDomain).toList();
     }
 
     public void vote(String electionId, String candidateId) {

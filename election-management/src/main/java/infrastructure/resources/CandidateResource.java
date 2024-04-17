@@ -1,6 +1,5 @@
 package infrastructure.resources;
 
-
 import api.CandidateApi;
 import api.dto.in.CreateCandidate;
 import api.dto.in.UpdateCandidate;
@@ -18,6 +17,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
+
 
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
